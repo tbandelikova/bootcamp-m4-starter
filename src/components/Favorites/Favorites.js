@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
 import './Favorites.css';
+import { connect } from "react-redux";
 
-
+const mapStateToProps = (state) => {
+    return {
+        favoriteMovies: state.movieList
+    }
+  };
+//TODO: delete button
 class Favorites extends Component {
     state = {
         title: 'Новый список',
@@ -12,10 +18,10 @@ class Favorites extends Component {
     render() { 
         return (
             <div className="favorites">
-                <input value="Новый список" className="favorites__name" />
+                <input defaultValue="Новый список" className="favorites__name" />
                 <ul className="favorites__list">
-                    {this.state.movies.map((item) => {
-                        return <li key={item.id}>{item.title} ({item.year})</li>;
+                    {this.props.favoriteMovies.map((item) => {
+                        return <li key={item.imdbID}>{item.title} ({item.year})<div>x</div></li>;
                     })}
                 </ul>
                 <button type="button" className="favorites__save">Сохранить список</button>
@@ -24,4 +30,4 @@ class Favorites extends Component {
     }
 }
  
-export default Favorites;
+export default connect(mapStateToProps)(Favorites);

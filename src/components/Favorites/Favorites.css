@@ -17,6 +17,12 @@
     margin-bottom: 24px;
 }
 
+.favorites__list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
 .favorites__save {
     border: none;
     background-color: #496DDB;
