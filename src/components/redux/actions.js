@@ -15,3 +15,10 @@ export function addMovieToList(movies) {
       }
     }
   }
+
+  export function remFromList(movieList) {
+    return {
+      type: 'REMOVE_FROM_LIST',
+      payload: movieList
+    }
+  }
