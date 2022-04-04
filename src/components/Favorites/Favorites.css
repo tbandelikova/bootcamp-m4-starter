@@ -21,6 +21,7 @@
     display: flex;
     justify-content: space-between;
     align-items: baseline;
+    margin-bottom: 3px;
 }
 
 .favorites__save {
@@ -32,8 +33,22 @@
     transition: all 0.2s linear;
 }
 
-.favorites__save:hover {
+.favorites__save:hover, .favorites__delete:hover {
     cursor: pointer;
     opacity: 0.9;
+    transition: all 0.2s linear;
+}
+
+.favorites__save:disabled {
+    background-color: #a8b4db;
+    cursor: not-allowed;
+}
+
+.favorites__delete {
+    border: none;
+    background-color: #496DDB;
+    padding: 5px 10px;
+    color: #FFEEDB;
+    font-size: 14px;
     transition: all 0.2s linear;
 }

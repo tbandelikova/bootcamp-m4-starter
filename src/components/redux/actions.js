@@ -22,3 +22,10 @@ export function addMovieToList(movies) {
       payload: movieList
     }
   }
+  
+  export function createPostList(data) {
+    return {
+      type: 'CREATE_POST_LIST',
+      payload: data.id
+    }
+  }
