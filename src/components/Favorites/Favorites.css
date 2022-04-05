@@ -39,7 +39,7 @@
     transition: all 0.2s linear;
 }
 
-.favorites__save:disabled {
+.favorites__save:disabled, .favorites__delete:disabled {
     background-color: #a8b4db;
     cursor: not-allowed;
 }

@@ -19,9 +19,9 @@ function reducer(state = initialState, action) {
             movieRemIndex >= 0 && movieRem.splice(movieRemIndex, 1);
             return {...state, movieList: movieRem}
         case 'CREATE_POST_LIST':
-            const responseId = action.payload;
-            console.log('CREATE_POST_LIST',action.payload)
-            return {movieListId: responseId}    
+            console.log('CREATE_POST_LIST',action.payload);
+            return {...state, movieListId: action.payload};
+            
         default:
             return state;
     }

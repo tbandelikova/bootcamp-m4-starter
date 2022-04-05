@@ -17,39 +17,39 @@ const mapDispatchToProps = (dispatch) => {
     }
 };
 
-
 class Favorites extends Component {
     state = {
         title: '',
-        movies: this.props.favoriteMovies.imdbID,
+        movies: '',
         isListCreated: false
     }
 
     handleChange = (e) => this.setState({title: e.target.value});
-//TODO: state.movies massive retutn null or bad request
+
     handleSubmit = (e) => {
         e.preventDefault();
-        // fetch(SAVE_LIST_API, {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //     },
-        //     body: JSON.stringify({
-        //         title: this.state.title,
-        //         movies: [
-        //             "tt0068646",
-        //             "tt0098019"
-        //         ]
-        //     }),
-        //     })
-        // .then(response => response.json())
-        // .then(data => {
-        //     console.log('Success:', data);
-        //     this.props.createPostList(data);
-        //     })
-        // .catch((error) => {
-        //     console.error('Error:', error);
-        //     });
+
+        fetch(SAVE_LIST_API, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                title: this.state.title,
+                movies: this.props.favoriteMovies.map((item) => {
+                    return item.imdbID
+                })
+            }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+                this.props.createPostList(data);
+                this.setState({isListCreated: true});
+                })
+            .catch((error) => {
+                console.error('Error:', error);
+                });
 
     };
 
@@ -59,11 +59,13 @@ class Favorites extends Component {
             <div className="favorites">
                 <form onSubmit={this.handleSubmit}>
                     <input placeholder="Новый список" className="favorites__name"
-                        value={this.state.title} onChange={this.handleChange} />
+                        value={this.state.title} onChange={this.handleChange} disabled={isListCreated}/>
                     <ul className="favorites__list">
                         {this.props.favoriteMovies.map((item) => {
                             return <li key={item.imdbID}>{item.title} ({item.year})
-                            <button className='favorites__delete' onClick={() => this.props.remFromList(item)}>x</button></li>;
+                            <button className='favorites__delete'
+                            onClick={() => this.props.remFromList(item)}
+                            disabled={isListCreated}>x</button></li>;
                         })}
                     </ul>
                     {isListCreated ? <Link to="/list/:id">Перейти к списку</Link> :
