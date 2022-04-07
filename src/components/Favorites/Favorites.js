@@ -7,7 +7,8 @@ import { SAVE_LIST_API } from '../config';
 
 const mapStateToProps = (state) => {
     return {
-        favoriteMovies: state.movieList
+        favoriteMovies: state.movieList,
+        id: state.movieListId
     }
   };
 const mapDispatchToProps = (dispatch) => {
@@ -68,7 +69,7 @@ class Favorites extends Component {
                             disabled={isListCreated}>x</button></li>;
                         })}
                     </ul>
-                    {isListCreated ? <Link to="/list/:id">Перейти к списку</Link> :
+                    {isListCreated ? <Link to={`/list/${this.props.id}`}>Перейти к списку</Link> :
                     <button className="favorites__save" disabled={title === ''}>
                     Сохранить список
                     </button>}
