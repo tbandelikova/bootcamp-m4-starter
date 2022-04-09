@@ -44,7 +44,6 @@ class Favorites extends Component {
             })
             .then(response => response.json())
             .then(data => {
-                console.log('Success:', data);
                 this.props.createPostList(data);
                 this.setState({isListCreated: true});
                 })

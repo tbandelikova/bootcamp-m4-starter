@@ -1,6 +1,8 @@
 .header {
     background: #496DDB;
     padding: 20px calc(50% - 500px) 10px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .header__title {
@@ -8,4 +10,11 @@
     color: #FFEEDB;
     font-size: 45px;
     margin-left: 40px;
+}
+
+.header__menu {
+    font-family: 'Luckiest Guy', cursive;
+    color: #f0a958;
+    font-size: 30px;
+    margin: 0px 30px;
 }
