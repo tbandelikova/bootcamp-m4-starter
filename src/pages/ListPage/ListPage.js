@@ -17,7 +17,7 @@ class ListPage extends Component {
         })
         .then((data) => {
             this.setState({ listTitle: data.title, imdbID: data.movies });
-            [...this.state.imdbID].map((item) => {
+            [...this.state.imdbID].forEach((item) => {
                 fetch(`http://www.omdbapi.com/?i=${item}&apikey=${API_KEY}`)
                 .then((response) => response.json())
                 .then((data) => {
@@ -36,7 +36,7 @@ class ListPage extends Component {
                 <ul>
                     {this.state.movies && this.state.movies.map((item) =>
                         <li key={item.imdbID}>
-                            <a href={`https://www.imdb.com/title/${item.imdbID}/`} target="_blank">{item.Title} ({item.Year})</a>
+                            <a href={`https://www.imdb.com/title/${item.imdbID}/`} target="_blank" rel="noopener noreferrer">{item.Title} ({item.Year})</a>
                         </li>
                     )}
                 </ul>
